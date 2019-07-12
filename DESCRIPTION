@@ -5,11 +5,20 @@ Version: 0.0.99
 Authors@R: c(
       person("Stuart", "Lee", email = "lee.s@wehi.edu.au", role = c("aut", "cre")),
       person("Michael", "Lawrence", role = c("aut", "ctb")),
-      person("Jonathan", "Carroll", email = "rpkg@jcarroll.com.au", role = "ctb")
+      person("Jonathan", "Carroll", email = "rpkg@jcarroll.com.au", role = "ctb"),
+      person("Kevin", "Wang", email = "kevin.wang@sydney.edu.au", role = "ctb")
       )
 Depends: SummarizedExperiment
-Imports: dplyr, S4Vectors, BiocGenerics, Biobase, methods
-Suggests: testthat, MultiAssayExperiment
+Imports: 
+    dplyr,
+    S4Vectors,
+    BiocGenerics,
+    Biobase,
+    methods,
+    janitor
+Suggests: 
+  testthat, 
+  MultiAssayExperiment
 Maintainer: Stuart Lee <lee.s@wehi.edu.au>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
@@ -18,5 +27,6 @@ Encoding: UTF-8
 RoxygenNote: 6.1.1
 Collate: 
     'methods.R'
+    'clean_names_col.R'
     'plyexperiment-package.R'
     'verbs.R'

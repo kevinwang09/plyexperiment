@@ -20,6 +20,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Jonathan Carroll \email{rpkg@jcarroll.com.au} [contributor]
+  \item Kevin Wang \email{kevin.wang@sydney.edu.au} [contributor]
 }
 
 }
