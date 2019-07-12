@@ -2,3 +2,20 @@
 
 language: R
 cache: packages
+r: bioc-devel
+dist: trusty
+
+os:
+  - linux
+
+env:
+  - R_BIOC_VERSION: "3.10"
+
+#script:
+#  - R -e 'install.packages("pkgdown")'
+#
+#deploy:
+#  provider: script
+#  script: Rscript -e 'pkgdown::deploy_site_github(tarball = ".")'
+#  skip_cleanup: true
+#
