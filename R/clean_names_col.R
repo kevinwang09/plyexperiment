@@ -7,7 +7,6 @@
 #' @export
 #' @importFrom janitor clean_names
 #' @author Kevin Wang
-#' @rdname tidy_col
 #' @include methods.R
 #' @examples
 #' y <- matrix(rnorm(2000), ncol=20)
