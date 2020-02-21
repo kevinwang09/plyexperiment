@@ -1,7 +1,7 @@
 Package: plyexperiment
 Type: Package
 Title: A fluent interface to SummarizedExperiment
-Version: 0.0.99
+Version: 0.0.99.1
 Authors@R: c(
       person("Stuart", "Lee", email = "lee.s@wehi.edu.au", role = c("aut", "cre")),
       person("Michael", "Lawrence", role = c("aut", "ctb")),
@@ -24,9 +24,10 @@ Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: Artistic-2.0
 Encoding: UTF-8
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Collate: 
     'methods.R'
     'clean_names_col.R'
     'plyexperiment-package.R'
+    'sce_split.R'
     'verbs.R'

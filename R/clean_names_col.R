@@ -17,7 +17,7 @@
 
 clean_names_col <- function(object, case = "snake") {
   pd <- as.data.frame(colData(object))
-  pd <- janitor::clean_names(pd, case)
+  pd <- janitor::clean_names(dat = pd, case = case)
   rownames(pd) <- rownames(colData(object))
   colData(object) <- DataFrame(pd)
   return(object)
