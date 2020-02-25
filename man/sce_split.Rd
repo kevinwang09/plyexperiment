@@ -2,7 +2,7 @@
 % Please edit documentation in R/sce_split.R
 \name{sce_split}
 \alias{sce_split}
-\title{Tidying up column data}
+\title{Splitting a SCE object by a vector}
 \usage{
 sce_split(sce, f)
 }
@@ -15,7 +15,7 @@ sce_split(sce, f)
 A list of SingleCellExperiment correspond to "f".
 }
 \description{
-Tidying up column data
+Splitting a SCE object by a vector
 }
 \examples{
 y <- matrix(rnorm(2000), ncol=20)

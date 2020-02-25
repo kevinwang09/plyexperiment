@@ -1,10 +1,10 @@
-#' Tidying up column data
+#' Splitting a SCE object by a vector
 #'
-#' @export
 #' @param sce A SingleCellExperiment object
 #' @param f A character/factor vector of the same length as ncol(sce)
 #' @author Kevin Wang
 #' @return A list of SingleCellExperiment correspond to "f".
+#' @export
 #' @examples
 #' y <- matrix(rnorm(2000), ncol=20)
 #' se <- SummarizedExperiment(list(counts=y))

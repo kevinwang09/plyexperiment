@@ -22,6 +22,7 @@
 #'
 #' @author Davis McCarthy, with some modifications from Aaron Lun
 #' @rdname tidy_col
+#' @name tidy_col
 #' @include methods.R
 #' @examples
 #' y <- matrix(rnorm(2000), ncol=20)

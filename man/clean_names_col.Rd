@@ -7,6 +7,8 @@
 clean_names_col(object, case = "snake")
 }
 \arguments{
+\item{object}{A SingleCellExperiment object.}
+
 \item{case}{Case arguments to be passed to the relevant \pkg{janitor} \code{clean_names} function.}
 }
 \value{

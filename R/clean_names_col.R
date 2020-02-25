@@ -1,7 +1,7 @@
 #' Tidying up column data
 #'
 #' @param case Case arguments to be passed to the relevant \pkg{janitor} \code{clean_names} function.
-#'
+#' @param object A SingleCellExperiment object.
 #' @return A modified SingleCellExperiment object.
 #'
 #' @export
