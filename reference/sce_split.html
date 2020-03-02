@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tidy manipulation of SummarizedExperiment objects by column. — tidy_col • plyexperiment</title>
+<title>Splitting a SCE object by a vector — sce_split • plyexperiment</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Tidy manipulation of SummarizedExperiment objects by column. — tidy_col" />
-<meta property="og:description" content="Tidy manipulation of SummarizedExperiment objects by column." />
+<meta property="og:title" content="Splitting a SCE object by a vector — sce_split" />
+<meta property="og:description" content="Splitting a SCE object by a vector" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,97 +100,210 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tidy manipulation of SummarizedExperiment objects by column.</h1>
+    <h1>Splitting a SCE object by a vector</h1>
     
-    <div class="hidden name"><code>tidy_col.Rd</code></div>
+    <div class="hidden name"><code>sce_split.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Tidy manipulation of SummarizedExperiment objects by column.</p>
+    <p>Splitting a SCE object by a vector</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mutate_col</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='fu'>rename_col</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='fu'>filter_col</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='fu'>arrange_col</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='fu'>select_col</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>sce_split</span>(<span class='no'>sce</span>, <span class='no'>f</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>a SummarizedExperiment object.</p></td>
+      <th>sce</th>
+      <td><p>A SingleCellExperiment object</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments to be passed to the relevant <span class="pkg">dplyr</span> functions.</p></td>
+      <th>f</th>
+      <td><p>A character/factor vector of the same length as ncol(sce)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A modified SingleCellExperiment object.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The <code>mutate_col</code> function calls <code>mutate</code> to add new column variables to <code>colData(object)</code>.</p>
-<p>The <code>rename_col</code> function calls <code>rename</code> to rename column variables to <code>colData(object)</code>.</p>
-<p>The <code>filter_col</code> function calls <code><a href='https://rdrr.io/r/stats/filter.html'>filter</a></code> to subset <code>object</code> by column, based on the matching elements in rows of <code>colData(object)</code>.</p>
-<p>The <code>arrange_col</code> function calls <code>arrange</code> to order columns by the corresponding variable in <code>colData(object)</code>.</p>
+    <p>A list of SingleCellExperiment correspond to "f".</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>2000</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>20</span>)
 <span class='no'>se</span> <span class='kw'>&lt;-</span> <span class='fu'>SummarizedExperiment</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>counts</span><span class='kw'>=</span><span class='no'>y</span>))
-<span class='no'>se</span>$<span class='no'>whee</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>y</span>), <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-
-(<span class='no'>se2</span> <span class='kw'>&lt;-</span> <span class='fu'>mutate_col</span>(<span class='no'>se</span>, <span class='kw'>yay</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>y</span>))))</div><div class='output co'>#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 20 
+<span class='no'>se</span>$<span class='no'>CellTypes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>y</span>), <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>se</span>$<span class='no'>cell_Types</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>y</span>), <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'>sce_split</span>(<span class='no'>se</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='no'>se</span>$<span class='no'>CellTypes</span>)</div><div class='output co'>#&gt; $N
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
 #&gt; metadata(0):
 #&gt; assays(1): counts
 #&gt; rownames: NULL
 #&gt; rowData names(0):
 #&gt; colnames: NULL
-#&gt; colData names(2): whee yay</div><div class='input'>
-(<span class='no'>se3</span> <span class='kw'>&lt;-</span> <span class='fu'>rename_col</span>(<span class='no'>se</span>, <span class='kw'>blah</span> <span class='kw'>=</span> <span class='no'>whee</span>))</div><div class='output co'>#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 20 
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $Y
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 2 
 #&gt; metadata(0):
 #&gt; assays(1): counts
 #&gt; rownames: NULL
 #&gt; rowData names(0):
 #&gt; colnames: NULL
-#&gt; colData names(1): blah</div><div class='input'>
-(<span class='no'>se4</span> <span class='kw'>&lt;-</span> <span class='fu'>filter_col</span>(<span class='no'>se</span>, <span class='no'>whee</span> <span class='kw'>==</span> <span class='st'>"A"</span>))</div><div class='output co'>#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 0 
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $A
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
 #&gt; metadata(0):
 #&gt; assays(1): counts
 #&gt; rownames: NULL
 #&gt; rowData names(0):
 #&gt; colnames: NULL
-#&gt; colData names(1): whee</div><div class='input'>
-(<span class='no'>se5</span> <span class='kw'>&lt;-</span> <span class='fu'>arrange_col</span>(<span class='no'>se</span>, <span class='no'>whee</span>))</div><div class='output co'>#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 20 
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $K
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 2 
 #&gt; metadata(0):
 #&gt; assays(1): counts
 #&gt; rownames: NULL
 #&gt; rowData names(0):
 #&gt; colnames: NULL
-#&gt; colData names(1): whee</div></pre>
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $S
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $X
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $M
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $B
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 2 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $Q
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $L
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 2 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $I
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $W
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $J
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $O
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $D
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $E
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
-    <p>Davis McCarthy, with some modifications from Aaron Lun</p>
+    <p>Kevin Wang</p>
   </div>
 </div>
 
