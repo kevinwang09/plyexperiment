@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">plyexperiment</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.99.2</span>
       </span>
     </div>
 
@@ -133,17 +133,7 @@
 <span class='no'>se</span> <span class='kw'>&lt;-</span> <span class='fu'>SummarizedExperiment</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>counts</span><span class='kw'>=</span><span class='no'>y</span>))
 <span class='no'>se</span>$<span class='no'>CellTypes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>y</span>), <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 <span class='no'>se</span>$<span class='no'>cell_Types</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>LETTERS</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>y</span>), <span class='kw'>replace</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='fu'>sce_split</span>(<span class='no'>se</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='no'>se</span>$<span class='no'>CellTypes</span>)</div><div class='output co'>#&gt; $N
-#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 1 
-#&gt; metadata(0):
-#&gt; assays(1): counts
-#&gt; rownames: NULL
-#&gt; rowData names(0):
-#&gt; colnames: NULL
-#&gt; colData names(2): CellTypes cell_Types
-#&gt; 
-#&gt; $Y
+<span class='fu'>sce_split</span>(<span class='no'>se</span>, <span class='kw'>f</span> <span class='kw'>=</span> <span class='no'>se</span>$<span class='no'>CellTypes</span>)</div><div class='output co'>#&gt; $A
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 2 
 #&gt; metadata(0):
@@ -153,7 +143,7 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $A
+#&gt; $V
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 1 
 #&gt; metadata(0):
@@ -163,7 +153,7 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $K
+#&gt; $Z
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 2 
 #&gt; metadata(0):
@@ -173,37 +163,7 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $S
-#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 1 
-#&gt; metadata(0):
-#&gt; assays(1): counts
-#&gt; rownames: NULL
-#&gt; rowData names(0):
-#&gt; colnames: NULL
-#&gt; colData names(2): CellTypes cell_Types
-#&gt; 
-#&gt; $X
-#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 1 
-#&gt; metadata(0):
-#&gt; assays(1): counts
-#&gt; rownames: NULL
-#&gt; rowData names(0):
-#&gt; colnames: NULL
-#&gt; colData names(2): CellTypes cell_Types
-#&gt; 
-#&gt; $M
-#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 1 
-#&gt; metadata(0):
-#&gt; assays(1): counts
-#&gt; rownames: NULL
-#&gt; rowData names(0):
-#&gt; colnames: NULL
-#&gt; colData names(2): CellTypes cell_Types
-#&gt; 
-#&gt; $B
+#&gt; $N
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 2 
 #&gt; metadata(0):
@@ -213,17 +173,7 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $Q
-#&gt; class: SummarizedExperiment 
-#&gt; dim: 100 1 
-#&gt; metadata(0):
-#&gt; assays(1): counts
-#&gt; rownames: NULL
-#&gt; rowData names(0):
-#&gt; colnames: NULL
-#&gt; colData names(2): CellTypes cell_Types
-#&gt; 
-#&gt; $L
+#&gt; $P
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 2 
 #&gt; metadata(0):
@@ -233,9 +183,9 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $I
+#&gt; $D
 #&gt; class: SummarizedExperiment 
-#&gt; dim: 100 1 
+#&gt; dim: 100 2 
 #&gt; metadata(0):
 #&gt; assays(1): counts
 #&gt; rownames: NULL
@@ -243,7 +193,7 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $W
+#&gt; $E
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 1 
 #&gt; metadata(0):
@@ -263,7 +213,7 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $O
+#&gt; $F
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 1 
 #&gt; metadata(0):
@@ -273,7 +223,7 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $D
+#&gt; $X
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 1 
 #&gt; metadata(0):
@@ -283,7 +233,37 @@
 #&gt; colnames: NULL
 #&gt; colData names(2): CellTypes cell_Types
 #&gt; 
-#&gt; $E
+#&gt; $R
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 2 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $T
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $I
+#&gt; class: SummarizedExperiment 
+#&gt; dim: 100 1 
+#&gt; metadata(0):
+#&gt; assays(1): counts
+#&gt; rownames: NULL
+#&gt; rowData names(0):
+#&gt; colnames: NULL
+#&gt; colData names(2): CellTypes cell_Types
+#&gt; 
+#&gt; $S
 #&gt; class: SummarizedExperiment 
 #&gt; dim: 100 1 
 #&gt; metadata(0):
