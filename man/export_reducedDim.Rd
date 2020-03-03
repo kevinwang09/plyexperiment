@@ -9,7 +9,7 @@ export_reducedDim(
   type,
   cell_name = "cell_name",
   feature = NULL,
-  assayname = "logcounts"
+  assay_name = "logcounts"
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ export_reducedDim(
 
 \item{feature}{A character vector, must be a subset of the rownames of sce}
 
-\item{assayname}{Name of the assay, default to "logcounts"}
+\item{assay_name}{Name of the assay, default to "logcounts"}
 }
 \value{
 A tibble
@@ -30,6 +30,7 @@ A tibble
 Exporting the reducedDim object as a tibble
 }
 \examples{
+library(SingleCellExperiment)
 ncells <- 100
 ngenes <- 200
 u <- matrix(rpois(ngenes*ncells, 5), ncol=ncells)
@@ -52,6 +53,7 @@ sce <- SingleCellExperiment(assays = list(counts = u, logcounts = v),
 colData = colData, rowData = rowData,
 reducedDims = SimpleList(PCA = pca, TSNE = tsne))
 sce
+export_reducedDim(sce, type = "TSNE")
 }
 \author{
 Kevin Wang

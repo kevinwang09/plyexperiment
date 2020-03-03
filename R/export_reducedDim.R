@@ -3,7 +3,7 @@
 #' @param sce A SingleCellExperiment object
 #' @param type A character in reducedDimNames(sce)
 #' @param feature A character vector, must be a subset of the rownames of sce
-#' @param assayname Name of the assay, default to "logcounts"
+#' @param assay_name Name of the assay, default to "logcounts"
 #' @param cell_name The name of the rownames of colData(sce) when assay data and colData are joined.
 #' @author Kevin Wang
 #' @import SingleCellExperiment
@@ -15,6 +15,7 @@
 #' @return A tibble
 #' @export
 #' @examples
+#' library(SingleCellExperiment)
 #' ncells <- 100
 #' ngenes <- 200
 #' u <- matrix(rpois(ngenes*ncells, 5), ncol=ncells)
@@ -37,8 +38,9 @@
 #' colData = colData, rowData = rowData,
 #' reducedDims = SimpleList(PCA = pca, TSNE = tsne))
 #' sce
+#' export_reducedDim(sce, type = "TSNE")
 
-export_reducedDim = function(sce, type, cell_name = "cell_name", feature = NULL, assayname = "logcounts"){
+export_reducedDim = function(sce, type, cell_name = "cell_name", feature = NULL, assay_name = "logcounts"){
   stopifnot(class(sce) == "SingleCellExperiment")
   stopifnot(type %in% SingleCellExperiment::reducedDimNames(sce))
 
@@ -51,7 +53,7 @@ export_reducedDim = function(sce, type, cell_name = "cell_name", feature = NULL,
 
 
   if(!is.null(feature)){
-    feature_tbl = SummarizedExperiment::assay(sce[feature,], assayname) %>%
+    feature_tbl = SummarizedExperiment::assay(sce[feature,], assay_name) %>%
       as.matrix %>%
       reshape2::melt() %>%
       dplyr::transmute(
