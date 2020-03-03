@@ -1,7 +1,7 @@
 Package: plyexperiment
 Type: Package
 Title: A fluent interface to SummarizedExperiment
-Version: 0.0.99.1
+Version: 0.0.99.2
 Authors@R: c(
       person("Stuart", "Lee", email = "lee.s@wehi.edu.au", role = c("aut", "cre")),
       person("Michael", "Lawrence", role = c("aut", "ctb")),
@@ -15,7 +15,11 @@ Imports:
     BiocGenerics,
     Biobase,
     methods,
-    janitor
+    janitor,
+    SingleCellExperiment,
+    reshape2,
+    tibble,
+    magrittr
 Suggests: 
   testthat, 
   MultiAssayExperiment
@@ -28,6 +32,7 @@ RoxygenNote: 7.0.2
 Collate: 
     'methods.R'
     'clean_names_col.R'
+    'export_reducedDim.R'
     'plyexperiment-package.R'
     'sce_split.R'
     'verbs.R'
