@@ -7,8 +7,8 @@
 #' @param cell_name The name of the rownames of colData(sce) when assay data and colData are joined.
 #' @author Kevin Wang
 #' @import SingleCellExperiment
-#' @importFrom dplyr left_join transmute
-#' @importFrom magrittr set_colnames %>%
+#' @importFrom dplyr left_join transmute %>%
+#' @importFrom magrittr set_colnames
 #' @importFrom tibble rownames_to_column as_tibble
 #' @importFrom reshape2 melt
 #' @importFrom S4Vectors DataFrame
