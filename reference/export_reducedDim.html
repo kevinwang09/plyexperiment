@@ -109,7 +109,13 @@
     <p>Exporting the reducedDim object as a tibble</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export_reducedDim</span>(<span class='no'>sce</span>, <span class='no'>type</span>, <span class='kw'>feature</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>assayname</span> <span class='kw'>=</span> <span class='st'>"logcounts"</span>)</pre>
+    <pre class="usage"><span class='fu'>export_reducedDim</span>(
+  <span class='no'>sce</span>,
+  <span class='no'>type</span>,
+  <span class='kw'>cell_name</span> <span class='kw'>=</span> <span class='st'>"cell_name"</span>,
+  <span class='kw'>feature</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>assay_name</span> <span class='kw'>=</span> <span class='st'>"logcounts"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,11 +129,15 @@
       <td><p>A character in reducedDimNames(sce)</p></td>
     </tr>
     <tr>
+      <th>cell_name</th>
+      <td><p>The name of the rownames of colData(sce) when assay data and colData are joined.</p></td>
+    </tr>
+    <tr>
       <th>feature</th>
       <td><p>A character vector, must be a subset of the rownames of sce</p></td>
     </tr>
     <tr>
-      <th>assayname</th>
+      <th>assay_name</th>
       <td><p>Name of the assay, default to "logcounts"</p></td>
     </tr>
     </table>
@@ -137,7 +147,8 @@
     <p>A tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>ncells</span> <span class='kw'>&lt;-</span> <span class='fl'>100</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>SingleCellExperiment</span>)
+<span class='no'>ncells</span> <span class='kw'>&lt;-</span> <span class='fl'>100</span>
 <span class='no'>ngenes</span> <span class='kw'>&lt;-</span> <span class='fl'>200</span>
 <span class='no'>u</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Poisson.html'>rpois</a></span>(<span class='no'>ngenes</span>*<span class='no'>ncells</span>, <span class='fl'>5</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='no'>ncells</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>u</span>) <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"cell"</span>, <span class='fl'>1</span>:<span class='no'>ncells</span>)
@@ -155,9 +166,33 @@
 <span class='no'>pca</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='no'>ncells</span>*<span class='fl'>2</span>), <span class='no'>ncells</span>)
 <span class='no'>tsne</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>ncells</span>*<span class='fl'>2</span>), <span class='no'>ncells</span>)
 
-<span class='no'>sce</span> <span class='kw'>&lt;-</span> <span class='fu'>SingleCellExperiment</span>(<span class='kw'>assays</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>u</span>, <span class='kw'>logcounts</span> <span class='kw'>=</span> <span class='no'>v</span>),
+<span class='no'>sce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html'>SingleCellExperiment</a></span>(<span class='kw'>assays</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>u</span>, <span class='kw'>logcounts</span> <span class='kw'>=</span> <span class='no'>v</span>),
 <span class='kw'>colData</span> <span class='kw'>=</span> <span class='no'>colData</span>, <span class='kw'>rowData</span> <span class='kw'>=</span> <span class='no'>rowData</span>,
-<span class='kw'>reducedDims</span> <span class='kw'>=</span> <span class='fu'>SimpleList</span>(<span class='kw'>PCA</span> <span class='kw'>=</span> <span class='no'>pca</span>, <span class='kw'>TSNE</span> <span class='kw'>=</span> <span class='no'>tsne</span>))</div><div class='output co'>#&gt; <span class='error'>Error in SingleCellExperiment(assays = list(counts = u, logcounts = v),     colData = colData, rowData = rowData, reducedDims = SimpleList(PCA = pca,         TSNE = tsne)): could not find function "SingleCellExperiment"</span></div><div class='input'><span class='no'>sce</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'sce' not found</span></div></pre>
+<span class='kw'>reducedDims</span> <span class='kw'>=</span> <span class='fu'>SimpleList</span>(<span class='kw'>PCA</span> <span class='kw'>=</span> <span class='no'>pca</span>, <span class='kw'>TSNE</span> <span class='kw'>=</span> <span class='no'>tsne</span>))
+<span class='no'>sce</span></div><div class='output co'>#&gt; class: SingleCellExperiment 
+#&gt; dim: 200 100 
+#&gt; metadata(0):
+#&gt; assays(2): counts logcounts
+#&gt; rownames(200): gene1 gene2 ... gene199 gene200
+#&gt; rowData names(1): rowrandom
+#&gt; colnames(100): cell1 cell2 ... cell99 cell100
+#&gt; colData names(1): colrandom
+#&gt; reducedDimNames(2): PCA TSNE
+#&gt; spikeNames(0):
+#&gt; altExpNames(0):</div><div class='input'><span class='fu'>export_reducedDim</span>(<span class='no'>sce</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"TSNE"</span>)</div><div class='output co'>#&gt; # A tibble: 100 x 4
+#&gt;    cell_name      V1      V2 colrandom
+#&gt;    &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    
+#&gt;  1 cell1      1.86    0.206  r        
+#&gt;  2 cell2      0.994   2.34   a        
+#&gt;  3 cell3      0.773   0.196  y        
+#&gt;  4 cell4     -0.706   0.0936 c        
+#&gt;  5 cell5     -0.0150 -0.563  u        
+#&gt;  6 cell6      0.563   0.487  o        
+#&gt;  7 cell7     -1.85   -1.42   i        
+#&gt;  8 cell8      0.775  -0.295  e        
+#&gt;  9 cell9      0.893   0.149  m        
+#&gt; 10 cell10     1.57   -1.24   k        
+#&gt; # … with 90 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
