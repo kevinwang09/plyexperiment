@@ -50,8 +50,8 @@ export_reducedDim = function(sce, type, cell_name = "cell_name", feature = NULL,
     tibble::as_tibble()
 
 
-  if(!is.null(feature_set)){
-    feature_tbl = SummarizedExperiment::assay(sce[feature_set,], assayname) %>%
+  if(!is.null(feature)){
+    feature_tbl = SummarizedExperiment::assay(sce[feature,], assayname) %>%
       as.matrix %>%
       reshape2::melt() %>%
       dplyr::transmute(
