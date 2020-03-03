@@ -4,12 +4,20 @@
 \alias{export_reducedDim}
 \title{Exporting the reducedDim object as a tibble}
 \usage{
-export_reducedDim(sce, type, feature = NULL, assayname = "logcounts")
+export_reducedDim(
+  sce,
+  type,
+  cell_name = "cell_name",
+  feature = NULL,
+  assayname = "logcounts"
+)
 }
 \arguments{
 \item{sce}{A SingleCellExperiment object}
 
 \item{type}{A character in reducedDimNames(sce)}
+
+\item{cell_name}{The name of the rownames of colData(sce) when assay data and colData are joined.}
 
 \item{feature}{A character vector, must be a subset of the rownames of sce}
 

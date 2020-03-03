@@ -4,6 +4,7 @@
 #' @param type A character in reducedDimNames(sce)
 #' @param feature A character vector, must be a subset of the rownames of sce
 #' @param assayname Name of the assay, default to "logcounts"
+#' @param cell_name The name of the rownames of colData(sce) when assay data and colData are joined.
 #' @author Kevin Wang
 #' @import SingleCellExperiment
 #' @importFrom dplyr left_join transmute
@@ -37,7 +38,7 @@
 #' reducedDims = SimpleList(PCA = pca, TSNE = tsne))
 #' sce
 
-export_reducedDim = function(sce, type, feature = NULL, assayname = "logcounts"){
+export_reducedDim = function(sce, type, cell_name = "cell_name", feature = NULL, assayname = "logcounts"){
   stopifnot(class(sce) == "SingleCellExperiment")
   stopifnot(type %in% SingleCellExperiment::reducedDimNames(sce))
 
@@ -45,7 +46,7 @@ export_reducedDim = function(sce, type, feature = NULL, assayname = "logcounts")
     magrittr::set_colnames(value = paste0("V", 1:2)) %>%
     cbind(., colData(sce)) %>%
     as.data.frame() %>%
-    tibble::rownames_to_column("cell_name") %>%
+    tibble::rownames_to_column(cell_name) %>%
     tibble::as_tibble()
 
 
@@ -59,7 +60,7 @@ export_reducedDim = function(sce, type, feature = NULL, assayname = "logcounts")
         value)
 
     result = result %>%
-      left_join(feature_tbl, by = "cell_name")
+      left_join(feature_tbl, by = cell_name)
   }
   return(result)
 }
